@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block title %} Login Here {% endblock %}
+
+{% block content %}
+<form method="POST">
+    {% csrf_token %}
+        <div class="form-label">
+             <label for="{{ form.username.id_for_label }}">Username:</label>
+               {{ form.username }}
+        </div>
+        <div class="form-label">
+             <label for="{{ form.password.id_for_label }}">Password:</label>
+               {{ form.password }}
+        </div>
+          <div class="form-label">
+               <button type="submit" class="button">Login</button>
+        </div>
+  </form>
+  <div class="form-label">
+      <p>Don't have an account? <a href="/register">Sign up</a></p>
+  </div>
+{% endblock %}

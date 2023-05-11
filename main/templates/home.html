@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+{% block title %}Homeblog{%endblock%}
+{% block content %}
+<section class="header">
+<h1>Blogging Community</h1>
+<h3>You can create BlogPost here of which you can modify latter<br>
+or if you wish you can delete the post any moment of your choice<br>
+Because your post will recieve comments from other individuals who<br>
+are part of this platform<br><br>
+To continue you have to Login or Signup </h3>
+<div class='row'>
+    <div class='edit-row'>
+      <a href='/login/' class='button'>Login</a>
+    </div>
+    <div class='edit-row'>
+      <a href='/register/' class='button'>Signup</a>
+    </div>
+</div>
+</section>
+
+<div class="body">
+<h4>The last 5 recent created blogs post are shown below</h4>
+    {% for post in posts %}
+        <div class="post">
+            <h2><a href="{% url 'post_detail' post.id %}">{{ post.title }}</a></h2>
+            <p class="meta">By {{ post.author.username }} on {{ post.date_published|date }}</p>
+            <p>{{ post.content|truncatechars:200 }}</p>
+        </div>
+    {% empty %}
+        <p>No posts yet.</p>
+    {% endfor %}
+</div>
+{% endblock %}
